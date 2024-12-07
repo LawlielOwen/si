@@ -1,0 +1,73 @@
+{"pedidos":[
+    {
+      "id_pedido": 1,
+      "pedido_inventario": "Inv-001",
+      "fecha_pedido": "2024-11-01 10:00:00",
+      "producto_pedido": "Iphone 16 128 GB Blanco",
+      "cant_vendida_pedido": 2000,
+      "pu_pedido": 19000.000,
+      "total_pedido": 38000.000,
+      "iva_pedido": 6080.000,
+      "cant_prod_pedido": 100,
+      "stock_pedido": 97,
+      "total_p_pedido": 44080000.000,
+      "estatus_pedido": 1
+    },
+    {
+      "id_pedido": 2,
+      "pedido_inventario": "INV-002",
+      "fecha_pedido": "2024-11-02 12:30:00",
+      "producto_pedido": "Samsung Galaxy S24 Ultra 256 GB",
+      "cant_vendida_pedido": 3000,
+      "pu_pedido": 18000.000,
+      "total_pedido": 54000.000,
+      "iva_pedido": 8640.000,
+      "cant_prod_pedido": 50,
+      "stock_pedido": 47,
+      "total_p_pedido": 62640.000,
+      "estatus_pedido": 1
+    },
+    {
+      "id_pedido": 3,
+      "pedido_inventario": "INV-003",
+      "fecha_pedido": "2024-11-03 09:15:00",
+      "producto_pedido": "Reloj para Hombre Chronomat Edición Especial",
+      "cant_vendida_pedido": 2000,
+      "pu_pedido": 265335.000,
+      "total_pedido": 530670.000,
+      "iva_pedido": 84907.200,
+      "cant_prod_pedido": 10,
+      "stock_pedido": 8,
+      "total_p_pedido": 615577.200,
+      "estatus_pedido": 1
+    },
+    {
+      "id_pedido": 4,
+      "pedido_inventario": "INV-004",
+      "fecha_pedido": "2024-11-04 14:45:00",
+      "producto_pedido": "Laptop Dell XPS 15 9510",
+      "cant_vendida_pedido": 1000,
+      "pu_pedido": 50000.000,
+      "total_pedido": 50000.000,
+      "iva_pedido": 8000.000,
+      "cant_prod_pedido": 30,
+      "stock_pedido": 29,
+      "total_p_pedido": 58000.000,
+      "estatus_pedido": 1
+    },
+    {
+      "id_pedido": 5,
+      "pedido_inventario": "INV-005",
+      "fecha_pedido": "2024-11-05 16:30:00",
+      "producto_pedido": "Audífonos Sony WH-1000XM5",
+      "cant_vendida_pedido": 4000,
+      "pu_pedido": 9000.000,
+      "total_pedido": 36000.000,
+      "iva_pedido": 5760.000,
+      "cant_prod_pedido": 200,
+      "stock_pedido": 196,
+      "total_p_pedido": 41760.000,
+      "estatus_pedido": 1
+    }
+  ]
+}

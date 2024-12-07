@@ -1,0 +1,14 @@
+{
+    "credenciales":[
+        {
+            "id":1,
+            "usuario":"Administrador",
+            "contraseña":"Administrador"
+        },
+        {
+            "id":2,
+            "usuario":"Empleado",
+            "contraseña":"Empleado"
+        }
+    ]
+}

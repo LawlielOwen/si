@@ -1,0 +1,133 @@
+{
+    "Estados": [
+      {
+        "estado": "Aguascalientes",
+        "municipios": ["Aguascalientes", "Asientos", "Calvillo", "Cosío", "Jesús María", "Pabellón de Arteaga"]
+      },
+      {
+        "estado": "Baja California",
+        "municipios": ["Ensenada", "Mexicali", "Tijuana", "Tecate", "Playas de Rosarito", "Rosarito"]
+      },
+      {
+        "estado": "Baja California Sur",
+        "municipios": ["La Paz", "Comondú", "Loreto", "Mulegé", "Los Cabos", "Todos Santos"]
+      },
+      {
+        "estado": "Campeche",
+        "municipios": ["Campeche", "Calkini", "Carmen", "Champotón", "Escárcega", "Palizada"]
+      },
+      {
+        "estado": "Chiapas",
+        "municipios": ["Tuxtla Gutiérrez", "San Cristóbal de las Casas", "Tapachula", "Comitán de Domínguez", "Palenque", "Chol"]
+      },
+      {
+        "estado": "Chihuahua",
+        "municipios": ["Chihuahua", "Ciudad Juárez", "Delicias", "Camargo", "Parral", "Bocoyna"]
+      },
+      {
+        "estado": "Coahuila",
+        "municipios": ["Saltillo", "Torreón", "Monclova", "Piedras Negras", "Ramos Arizpe", "Frontera"]
+      },
+      {
+        "estado": "Colima",
+        "municipios": ["Colima", "Manzanillo", "Tecomán", "Armería", "Villa de Álvarez", "Comala"]
+      },
+      {
+        "estado": "Durango",
+        "municipios": ["Durango", "Gómez Palacio", "Lerdo", "Victoria", "Pueblo Nuevo", "Canatlán"]
+      },
+      {
+        "estado": "Estado de México",
+        "municipios": ["Toluca", "Naucalpan", "Ecatepec", "Tlalnepantla", "Ixtlahuaca", "Metepec"]
+      },
+      {
+        "estado": "Guanajuato",
+        "municipios": ["Guanajuato", "León", "Irapuato", "Silao", "Celaya", "Salamanca"]
+      },
+      {
+        "estado": "Guerrero",
+        "municipios": ["Acapulco", "Chilpancingo", "Iguala", "Taxco", "Zihuatanejo", "Coyuca de Benítez"]
+      },
+      {
+        "estado": "Hidalgo",
+        "municipios": ["Pachuca", "Tizayuca", "Tulancingo", "Tula de Allende", "Tepeapulco", "Mineral de la Reforma"]
+      },
+      {
+        "estado": "Jalisco",
+        "municipios": ["Guadalajara", "Puerto Vallarta", "Zapopan", "Tlaquepaque", "Tonalá", "Tlajomulco de Zúñiga"]
+      },
+      {
+        "estado": "Ciudad de México",
+        "municipios": ["Coyoacán", "Álvaro Obregón", "Iztapalapa", "Miguel Hidalgo", "Benito Juárez", "Xochimilco"]
+      },
+      {
+        "estado": "Michoacán",
+        "municipios": ["Morelia", "Uruapan", "Lázaro Cárdenas", "Zamora", "La Piedad", "Pátzcuaro"]
+      },
+      {
+        "estado": "Morelos",
+        "municipios": ["Cuernavaca", "Jiutepec", "Temixco", "Xochitepec", "Ayala", "Puente de Ixtla"]
+      },
+      {
+        "estado": "Nayarit",
+        "municipios": ["Tepic", "Xalisco", "Bahía de Banderas", "Tuxpan", "Ixtlán del Río", "Compostela"]
+      },
+      {
+        "estado": "Nuevo León",
+        "municipios": ["Monterrey", "San Nicolás de los Garza", "Guadalupe", "San Pedro Garza García", "Escobedo", "Apodaca"]
+      },
+      {
+        "estado": "Oaxaca",
+        "municipios": ["Oaxaca de Juárez", "Salina Cruz", "Santa Cruz Xoxocotlán", "Tehuantepec", "Juchitán de Zaragoza", "Mataltepec"]
+      },
+      {
+        "estado": "Puebla",
+        "municipios": ["Puebla", "Atlixco", "Tehuacán", "San Martín Texmelucan", "Huejotzingo", "Cholula"]
+      },
+      {
+        "estado": "Querétaro",
+        "municipios": ["Querétaro", "El Marqués", "San Juan del Río", "Corregidora", "Pedro Escobedo", "Colón"]
+      },
+      {
+        "estado": "Quintana Roo",
+        "municipios": ["Chetumal", "Cancún", "Playa del Carmen", "Tulum", "Cozumel", "Felipe Carrillo Puerto"]
+      },
+      {
+        "estado": "San Luis Potosí",
+        "municipios": ["San Luis Potosí", "Soledad de Graciano Sánchez", "Ciudad Valles", "Matehuala", "Rioverde", "Tamazunchale"]
+      },
+      {
+        "estado": "Sinaloa",
+        "municipios": ["Culiacán", "Mazatlán", "Los Mochis", "Guasave", "Navolato", "Ahome"]
+      },
+      {
+        "estado": "Sonora",
+        "municipios": ["Hermosillo", "Nogales", "Ciudad Obregón", "Guaymas", "San Luis Río Colorado", "Navojoa"]
+      },
+      {
+        "estado": "Tabasco",
+        "municipios": ["Villahermosa", "Cárdenas", "Macuspana", "Cunduacán", "Centla", "Jalapa"]
+      },
+      {
+        "estado": "Tamaulipas",
+        "municipios": ["Victoria", "Reynosa", "Matamoros", "Nuevo Laredo", "Altamira", "Mante"]
+      },
+      {
+        "estado": "Tlaxcala",
+        "municipios": ["Tlaxcala", "Apizaco", "Chiautempan", "Zitlaltepec", "San Pablo del Monte", "Tepeyanco"]
+      },
+      {
+        "estado": "Veracruz",
+        "municipios": ["Xalapa", "Veracruz", "Córdoba", "Orizaba", "Coatzacoalcos", "Minatitlán"]
+      },
+      {
+        "estado": "Yucatán",
+        "municipios": ["Mérida", "Valladolid", "Tizimín", "Progreso", "Motul", "Izamal"]
+      },
+      {
+        "estado": "Zacatecas",
+        "municipios": ["Zacatecas", "Guadalupe", "Fresnillo", "Jerez", "Sombrerete", "Tlachichilco"]
+      }
+    ]
+  }
+  

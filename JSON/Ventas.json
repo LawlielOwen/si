@@ -1,0 +1,60 @@
+{
+    "ventas": [
+      {
+        "id_venta":1,
+        "cliente": "Juan Angel Aguirre",
+        "fecha": "2024-11-01 11:00:00",
+        "empleado":"Rodolfo Fernandez Gomez",
+        "producto": "Iphone 16 128 GB Blanco",
+        "cantidad": 1,
+        "precio_unitario": 19000.000,
+        "total": 19000.000,
+        "status_venta": 1
+      },
+      {
+        "id_venta":2,
+        "cliente": "Ana Martínez Gómez",
+        "fecha": "2024-11-02 15:30:00",
+        "empleado":"Salvador Lopez Martinez",
+        "producto": "Samsung Galaxy S24 Ultra 256 GB",
+        "cantidad": 2,
+        "precio_unitario": 18000.000,
+        "total": 36000.000,
+        "status_venta": 1
+      },
+      {
+        "id_venta":3,
+        "cliente": "Carlos Ramírez",
+        "fecha": "2024-11-03 14:00:00",
+        "empleado":"Osvaldo Perez Sanchez",
+        "producto": "Laptop Dell XPS 15 9510",
+        "cantidad": 1,
+        "precio_unitario": 50000.000,
+        "total": 50000.000,
+        "status_venta": 1
+      },
+      {
+        "id_venta":4,
+        "cliente": "María García Hernández",
+        "fecha": "2024-11-04 09:45:00",
+        "empleado":"Angel Ramirez Lopez",
+        "producto": "Audífonos Sony WH-1000XM5",
+        "cantidad": 3,
+        "precio_unitario": 9000.000,
+        "total": 27000.000,
+        "status_venta": 1
+      },
+      {
+        "id_venta":5,
+        "cliente": "Luis Sánchez Ortiz",
+        "fecha": "2024-11-05 17:15:00",
+        "empleado":"Martina Diaz Hernandez",
+        "producto": "Reloj para Hombre Chronomat Edición Especial, Plata, Oro rosa",
+        "cantidad": 1,
+        "precio_unitario": 265335.000,
+        "total": 265335.000,
+        "status_venta": 1
+      }
+    ]
+  }
+  
