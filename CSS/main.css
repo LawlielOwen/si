@@ -1,0 +1,157 @@
+main {
+    position: relative;
+    left: 0;
+   
+}
+
+.barra_modulos {
+    position: fixed;
+    left: 0px;
+    top: 60px;
+    width: 220px;
+    height: 100%;
+    z-index: 1;
+    padding: 0px 0px;
+    font-size: 15px;
+    background-color:  #212121;
+
+}
+
+.iconos {
+    margin-right: 20px;
+    margin-bottom: 5px;
+    width: 25px;
+    height: auto;
+}
+
+.href_secciones{
+    padding: 22px 25px;
+}
+.href_secciones:hover{
+    background-color: rgb(240, 180, 75);
+    color: black;
+
+}
+.fecha{
+position: relative;
+top: 30px;
+left: 10px;
+font-size: 20px;
+text-align: left;
+text-decoration: none;   
+color: white ;
+}
+/********************************Configuraciones para el responsive********************************/
+/* Uso de @media para adaptar el contenido a distintos dispositivos*/
+@media  (max-width: 1024px) {
+    .barra_modulos {
+        position: fixed;
+        top: 64px;
+        left: -220px;  /* Oculta la barra en un inicio */
+        width: 200px;
+        height: 340px;
+        padding-top: 45px;
+        transition: left 0.3s ease;
+        background-color: #212121;
+        border-right: 1px solid #FFFFFF;
+        border-bottom: 1px solid #FFFFFF;
+        border-top: 1px solid #FFFFFF;
+    }
+  
+    .boton_cerrar {
+        position: relative;
+        bottom: 340px;
+        width: 100px;
+        height: 45px;
+    }
+    .barra_modulos.show { /* Muestra la barra lateral cuando se hace clic en el menú */
+        left: 0;
+        background-color: #212121;
+        border-right: 1px solid #FFFFFF;
+
+    }
+
+    main {
+        padding-top: 100px;
+
+    }
+
+    .button_menu {
+        position: fixed;  /* Baja el boton que despliega el menu */
+        top: 80px;
+    }
+    .fecha{
+        position: relative;
+        left: 10px;
+        top: -0px;
+        font-size: 15px;
+        }
+
+}
+@media (max-width: 992px) {
+    .barra_modulos {
+        position: fixed;
+        top: 64px;
+        left: -220px;  /* Oculta la barra en un inicio */
+        width: 200px;
+        height: 340px;
+        padding-top: 45px;
+        transition: left 0.3s ease;
+        background-color: #212121;
+        border-right: 1px solid #FFFFFF;
+        border-bottom: 1px solid #FFFFFF;
+        border-top: 1px solid #FFFFFF;
+    }
+  
+    .boton_cerrar {
+        position: relative;
+        bottom: 340px;
+        width: 100px;
+        height: 45px;
+    }
+    .barra_modulos.show { /* Muestra la barra lateral cuando se hace clic en el menú */
+        left: 0;
+        background-color: #212121;
+        border-right: 1px solid #FFFFFF;
+
+    }
+
+    main {
+        padding-top: 100px;
+
+    }
+
+    .button_menu {
+        position: fixed;  /* Baja el boton que despliega el menu */
+        top: 85px;
+    }
+    .fecha{
+        position: relative;
+        left: 10px;
+        top: -0px;
+        font-size: 15px;
+        }
+}
+@media (max-width: 576px){
+    .boton_cerrar {
+        position: relative;
+        bottom: 342px;
+        width: 100px;
+        height: 46px;
+    } 
+    .button_menu {
+        position: fixed;  /* Baja el boton que despliega el menu */
+        top: 67px;
+    }
+}
+@media (max-width: 376px){
+    .boton_cerrar {
+        position: relative;
+        bottom: 365px;
+        width: 100px;
+        height: 46px;
+    }
+    .boton_cerrar{
+        bottom: 340px;
+    }
+}

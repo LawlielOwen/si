@@ -1,0 +1,286 @@
+body{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 0;
+    height: 100vh;
+    padding: 0;
+    padding-top: 0px;
+    background-color:#181818;
+    color: #e0e0e0;
+}
+/********************************Header********************************/
+header {
+    justify-content: space-between;  
+    align-items: center;
+    position:fixed;
+    padding: 0px;
+    width: 100vw;
+    height: 60px;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    padding: 0 20px;
+}
+
+.div_barra_usuario {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap:20px;
+    z-index: 3;
+    border-bottom: 1px solid #FFFFFF;
+    background-color: #212121;
+    font-family: sans-serif, arial,Helvetica;
+}
+
+.user_button {
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+    border: 0;
+    gap: 5px;
+    text-decoration: none;/* Elimina el subrayado del texto */
+    background:none;
+    font-weight: bold;
+    color: #EDEDED;
+}
+.div_logo {
+    box-sizing: border-box;
+    padding-bottom:10px;
+    margin-left: 40px;
+    text-align: center;
+}
+.div_fecha h3{
+position: relative;
+right: 250px;
+margin-top: 10px;
+font-size: 20px;    
+}
+.logo {
+    box-sizing: border-box;
+    width: 140px;
+    height: auto;
+    cursor: pointer;
+}
+.icono_usuario{
+    padding-right: 10px;
+}
+.user_button:hover {
+    cursor: pointer;
+}
+.div_menuInicio {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 87px;
+    padding:0;
+    margin: 0;
+    border: 1px solid #FFFFFF;
+    border-top: none;
+    z-index: 2; /* Sobre pone el elemento por encima del resto*/
+    list-style: none;
+    background-color:#212121;
+    font-weight: bold;
+}
+.div_menuInicio li{
+    position: relative;
+    width: 100%;
+}
+
+
+.div_menuInicio li a {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;  
+    padding: 15px 25px;     
+    color: #EDEDED;
+    text-decoration: none;
+
+}
+.div_menuInicio.show { /* Esta funcion lo que hara es tanto cerrar como despleglar el menu */
+    display: block; /* Ocupa todo el ancho de su contenedor*/
+}
+
+.div_menuInicio li a:hover {
+    background-color: rgb(240, 180, 75);
+    color: black;
+    transition: all 0.3s ease-in;
+}
+/********************************Header********************************/
+/********************************nav********************************/
+nav {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100%;
+    padding-top: 80px;
+    width: 250px;
+    left: 0;
+    z-index:2;
+    background-color:  #212121;
+    border-right: 1px solid #FFFFFF;
+}
+
+
+
+.div_secciones {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.href_secciones {
+    display: flex;
+    align-items: center;
+    padding: 22px 25px;
+    color: #e0e0e0;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: sans-serif,Arial, Helvetica;
+}
+
+.href_secciones:hover {
+    background-color: rgb(240, 180, 75);
+    color: black;
+    transition: all 0.3s ease-in;
+}
+.iconos{
+    margin-bottom: 5px;
+    margin-right: 25px;
+}
+
+
+
+.seccion_Inicio{
+    background-color: rgb(240, 180, 75);
+    color: black;
+}
+
+/*
+
+.seccion_Empleados {
+    background-color: rgb(240, 180, 75);
+    color: black;
+}
+    
+.seccion_Ventas{
+    background-color: rgb(240, 180, 75);
+    color: black;
+}
+
+.seccion_Pedidos{
+    background-color: rgb(240, 180, 75);
+    color: black;
+}
+ 
+.seccion_Producto{
+    background-color: rgb(240, 180, 75);
+    color: black;
+}
+
+
+    
+/********************************nav********************************/
+
+/********************************main********************************/
+main{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-left: 200px;
+    margin-top: 60px;
+    flex-grow: 1;
+}
+.div_bienvenida{
+    position: relative;
+    top: 140px;
+    left: 300px;
+    font-family: 'roboto',Arial, Helvetica, sans-serif;
+}
+.div_LogoGato{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logotipo{
+    position: relative;
+    left: 600px;
+    top: 140px;
+    width: 250px;
+    height: auto;
+}
+.div_inicio{
+    position: absolute;
+    left: 300px;
+    top:100px;
+    font-family: 'roboto',Arial, Helvetica, sans-serif;
+}
+table{
+    justify-self: flex-start;
+    position: relative;
+    top: 100px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border: 1px solid #FFFFFF;
+}
+thead{
+    text-align: left;
+    border: 1px solid #FFFFFF;
+    background-color: #1A1A1A;
+}
+th{
+    text-transform: uppercase;
+    padding: 15px 10px;
+    
+}
+td{
+    padding: 15px 15px;
+    
+    font-weight: bold;
+    cursor: pointer;
+}
+tbody tr:nth-child(odd){
+    background-color: #2C2C2C; /* Cambia el color de la fila*/
+    color: #D3D3D3;
+}
+tbody tr:nth-child(even){
+    background-color: #3D3D3D;
+    color: #D3D3D3;
+}td:hover{
+    background-color:rgb(240, 180, 75);
+    color: black;
+    transition: all 0.3s ease-in;
+}
+.notificacion{
+    position: relative;
+    top: 5px;
+}
+/********************************main********************************/
+@media (max-width: 992px) {
+    .barra_modulos {
+        position: fixed;
+        top: 92px;
+        left: -220px;  /* Oculta la barra en un inicio */
+        width: 200px;
+        height: 450px;
+        padding-top: 45px;
+        transition: left 0.3s ease;
+        background-color: #212121;
+        border-right: 1px solid #FFFFFF;
+        border-bottom: 1px solid #FFFFFF;
+        border-top: 1px solid #FFFFFF;
+    }
+    }
+
+    .boton_cerrar {
+        position: relative;
+        bottom: 439px;
+        width: 100px;
+    }
+    .barra_modulos.show { /* Muestra la barra lateral cuando se hace clic en el menú */
+        left: 0;
+        background-color: #212121;
+        border-right: 1px solid #FFFFFF;
+    }

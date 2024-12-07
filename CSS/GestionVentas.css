@@ -1,0 +1,54 @@
+body {
+    background-color: #181818;
+}
+
+
+.ventas {
+    background-color: rgb(240, 180, 75);
+    color: black;
+
+}
+
+/********************************Tabla de ventas********************************/
+
+
+.Activos {
+    padding: 5px 20px;  /*Establece los colores del estatus*/
+    border-radius: 10px;
+    font-weight: bold;
+    background-color: rgb(34, 148, 56);
+}
+
+.Inactivos {
+    padding: 5px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    background-color: rgb(146, 43, 23);
+}
+
+
+/********************************Tabla de ventas********************************/
+
+/********************************Configuraciones para el responsive********************************/
+/* Uso de @media para adaptar el contenido al hacerlo responsivo*/
+@media (max-width: 992px) {
+    
+    .ventas {
+        background-color: rgb(240, 180, 75);
+        color: black;
+    }
+    
+    .Activos {
+        padding: 5px 5px;  /* Establece los colores del estatus */
+        border-radius: 10px;
+        font-weight: bold;
+        background-color: rgb(34, 148, 56);
+    }
+
+    .Inactivos {
+        padding: 5px 5px;
+        border-radius: 10px;
+        font-weight: bold;
+        background-color: rgb(146, 43, 23);
+    }
+}
