@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>L'elégant Chat Noir</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device-width , initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="CSS/Index.css">
+    <link rel="stylesheet" href="CSS/main.css">
+    <script src="JS/Administrador.js"></script>
+    <link rel="shortcut icon" href="Images/Icono.jpg">
+
+</head>
+
+<body>
+    <!-- Seccion header -->
+    <header>
+
+        <div class="container-fluid ">
+            <div class="row">
+                <div class="col-xxl-4 d-flex align-items-center justify-content-between">
+                    <img src="Img/Iconos/GatoSinDerechos.svg" class="logo custom-left" alt="Logo Gato Sin Derechos">
+                    <h5 class="text-center w-100 d-none d-md-block">Fecha de ingreso: 23/11/2024</h5>
+
+                    <div class="usuario_menu">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false" aria-label="Abrir menú de usuario">
+                                    <img src="Img/Iconos/account_circle_22dp_FFD136_FILL0_wght400_GRAD0_opsz24.svg"
+                                        class="icono_usuario" alt="Icono de usuario">
+                                    Chayanne
+                                </a>
+                                <ul class="menu_opciones dropdown-menu">
+                                    <li><a class="dropdown-item" data-bs-toggle="modal"
+                                            data-bs-target="#configuracion">Configuración</a></li>
+                                    <li><a class="dropdown-item" href="Login.html">Cerrar sesión</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Formulario de configuraion del usuario -->
+    <div class="container"> 
+        <div class="modal fade" id="configuracion">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+              <div class="modal-content bg-dark text-light border-light">
+          
+                <div class="modal-header bg-dark text-light ">
+                  <h5 class="modal-title">Configuración de usuario</h5>
+                  <button type="button" class="btn-close  btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+          
+                
+                <div class="modal-body  bg-dark">
+                    <div class="container-fluid">   
+                        <!-- Formulario con validacion de bootstrap -->
+                        <form class="needs-validation" novalidate>
+                            <div class="mb-3 row">
+                              <label for="validationCustomUsername" class="col-sm-3 col-form-label text-light fw-bold">Nombre de usuario:</label>
+                              <div class="col-sm-9">
+                                <input type="text" class="form-control bg-secondary text-light" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                                <div class="invalid-feedback">
+                                  Por favor, elija un nombre de usuario.
+                                </div>
+                              </div>
+                            </div>
+                          
+                            <div class="mb-3 row">
+                              <label for="validationCustomPassword" class="col-sm-3 col-form-label text-light fw-bold">Ingrese contraseña:</label>
+                              <div class="col-sm-9">
+                                <input type="password" class="form-control bg-secondary text-light" id="validationCustomPassword" aria-describedby="inputGroupPrepend" required>
+                                <div class="invalid-feedback">
+                                  Por favor, ingrese una contraseña.
+                                </div>
+                              </div>
+                            </div>
+                          
+                            <div class="mb-3 row">
+                              <div class="offset-sm-3 col-sm-9">
+                                <button type="submit" class="btn btn-success ms-4">Confirmar</button> 
+                                <button type="button" class="btn btn-danger ms-4" data-bs-dismiss="modal">Cancelar</button>
+                              </div>
+                            </div>
+                          </form>
+                    </div>            
+                </div>
+              </div>
+            </div>
+          </div> 
+    </div>
+
+    
+    <!-- Seccion main -->
+    <main class="pt-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xxl-4">
+                    <button class="btn btn-dark d-lg-none button_menu" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#barraModulos" aria-expanded="false" aria-controls="barraModulos">
+                        ☰ Menu
+                    </button>
+
+                    <div class="barra_modulos collapse d-lg-block " id="barraModulos">
+                        <nav class="nav flex-column ">
+                            <a class="href_secciones inicio nav-link" href="Administrador.html"><img
+                                    src="Img/Iconos/home_22dp_FFD136_FILL0_wght400_GRAD0_opsz24.svg"
+                                    class="iconos">Inicio</a>
+                            <a class="href_secciones empleados nav-link" href="GestionEmpleados.html"><img
+                                    src="Img/Iconos/badge_22dp_FFD136_FILL0_wght400_GRAD0_opsz24.svg"
+                                    class="iconos">Empleados</a>
+                            <a class="href_secciones ventas nav-link" href="GestionVentas.html"><img
+                                    src="Img/Iconos/sell_22dp_FFD136_FILL0_wght400_GRAD0_opsz24.svg"
+                                    class="iconos">Ventas</a>
+                            <a class="href_secciones pedidos nav-link" href="GestionPedidos.html"><img
+                                    src="Img/Iconos/orders_22dp_FFD136_FILL0_wght400_GRAD0_opsz24.svg"
+                                    class="iconos">Pedidos</a>
+                            <a class="href_secciones productos nav-link" href="GestionProducto.html"><img
+                                    src="Img/Iconos/inventory_22dp_FFD136_FILL0_wght400_GRAD0_opsz24.svg"
+                                    class="iconos">Productos</a>
+                        </nav>
+                        <button class="boton_cerrar btn btn-danger d-lg-none" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#barraModulos" aria-expanded="true" aria-controls="barraModulos">
+                            ✖ Cerrar
+                        </button>
+                    </div>
+                </div>
+                <div class="col main-content">
+
+                </div>
+            </div>
+        </div>
+        <div class="container">
+<!-- tabla de notificaciones -->
+            <table class="table text-light mt-5 ">
+                <thead>
+                    <tr>
+                        <th scope="col">Notificaciones</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider  text-light">
+                    <tr>
+                        <td>-Pedido nuevo realizado por el cliente Rodolfo</td>
+                    </tr>
+                    <tr>
+                        <td>-Inventario bajo: producto "Jeans Oscuros"</td>
+                    </tr>
+                    <tr>
+                        <td>-Pedido nuevo realizado por el cliente Andres Manuel</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

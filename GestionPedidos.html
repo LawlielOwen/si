@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>L'elégant Chat Noir</title>
+    <link rel="shortcut icon" href="Img/GatoN.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device-width , initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="CSS/GestionPedidos.css">
+    <link rel="stylesheet" href="CSS/TablaGestion.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    
+    <script src="JS/FiltrarTabla.js"></script>
+</head>
+<body>
+       <!-- Seccion header -->
+       <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xxl-4 d-flex align-items-center justify-content-between">
+                    <img src="Img/Iconos/GatoSinDerechos.svg" class="logo custom-left" alt="Logo Gato Sin Derechos">
+                    <div class="input-group mb-2 flex-nowrap col-12 col-md-6">
+                        <span class="input-group-text" id="addon-wrapping">
+                            <i class="fas fa-search"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="#f0b44b" class="bi bi-search" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                            </svg></i>
+                        </span>
+                        <input type="search" class="form-control buscar_pedido" placeholder="Busqueda" aria-label="Username" aria-describedby="addon-wrapping" onkeyup="buscarPedido()">
+                    </div>
+                    <div class="usuario_menu">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle username" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="Img/rogonsote.jpg" class="icono_usuario" alt="Icono de usuario"> Osvaldo
+                                </a>
+                                <ul class="menu_opciones dropdown-menu">
+                                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#configuracion">Configuración</a></li>
+                                    <li><a class="dropdown-item" href="Index.html">Cerrar sesión</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Configuracion de usuario -->
+    <div class="container">
+        <div class="modal fade" id="configuracion">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content bg-dark text-light border-light">
+
+                    <div class="modal-header bg-dark text-light ">
+                        <h5 class="modal-title">Configuración de usuario</h5>
+                        <button type="button" class="btn-close  btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- cuerpo del diálogo -->
+                    <div class="modal-body  bg-dark">
+                        <div class="container-fluid">
+                            <!-- Formulario con validacion de bootstrap -->
+                            <form class="needs-validation" novalidate>
+                                <div class="mb-3 row">
+                                    <label for="validationCustomUsername"
+                                        class="col-sm-3 col-form-label text-light fw-bold">Nombre de usuario:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control bg-secondary text-light"
+                                            id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                                        <div class="invalid-feedback">
+                                            Por favor, elija un nombre de usuario.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <label for="validationCustomPassword"
+                                        class="col-sm-3 col-form-label text-light fw-bold">Ingrese contraseña:</label>
+                                    <div class="col-sm-9">
+                                        <input type="password" class="form-control bg-secondary text-light"
+                                            id="validationCustomPassword" aria-describedby="inputGroupPrepend" required>
+                                        <div class="invalid-feedback">
+                                            Por favor, ingrese una contraseña.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <div class="offset-sm-3 col-sm-9">
+                                        <button type="submit" class="btn btn-success ms-4">Confirmar</button>
+                                        <button type="button" class="btn btn-danger ms-4"
+                                            data-bs-dismiss="modal">Cancelar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+ <!-- Seccion main-->
+    <main class="pt-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xxl-4">
+                    <button class="btn btn-dark d-xl-none button_menu" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#barraModulos" aria-expanded="false" aria-controls="barraModulos">
+                        ☰ Menu
+                    </button>
+
+                    <div class="barra_modulos collapse d-xl-block " id="barraModulos">
+                        <nav class="nav flex-column ">
+                            <a class="href_secciones empleados nav-link" href="GestionEmpleados.html"><img
+                                src="Img/Iconos/badge_22dp_FFD136_FILL0_wght400_GRAD0_opsz24.svg"
+                                class="iconos">Empleados</a>
+                        <a class="href_secciones ventas nav-link" href="GestionVentas.html"><img
+                                src="Img/Iconos/sell_22dp_FFD136_FILL0_wght400_GRAD0_opsz24.svg"
+                                class="iconos">Ventas</a>
+                        <a class="href_secciones pedidos nav-link" href="GestionPedidos.html"><img
+                                src="Img/Iconos/orders_22dp_FFD136_FILL0_wght400_GRAD0_opsz24.svg"
+                                class="iconos">Pedidos</a>
+                        <a class="href_secciones productos nav-link" href="GestionProducto.html"><img
+                                src="Img/Iconos/inventory_22dp_FFD136_FILL0_wght400_GRAD0_opsz24.svg"
+                                class="iconos">Productos</a>
+
+                        </nav>
+                        <button class="boton_cerrar btn btn-danger d-xl-none" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#barraModulos" aria-expanded="true" aria-controls="barraModulos">
+                            ✖ Cerrar
+                        </button>
+                    </div>
+                </div>
+                <div class="col main-content">
+
+                </div>
+            </div>
+        </div>
+        <div class="container mt-5">
+         
+            <!-- Tabla de pedidos -->
+            <div class="table-responsive mt-5">
+                <table class="table text-light mt-5 caption-top" id="tabla">
+                    <caption class="text-light">
+                        <nav class="navbar navbar-expand">
+                            <div class="container-fluid">
+                                <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                                    <ul class="navbar-nav ">
+                                        <li class="nav-item dropdown">
+                                            <button class="btn btn-dark dropdown-toggle border border-warning boton_opciones"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                Pedidos
+                                            </button>
+                                            <ul class="dropdown-menu menu_filtro">
+                                                <li><a class="dropdown-item text-light"
+                                                        onclick="filtrarTablaPedido('todos')">Todos</a></li>
+                                                <li><a class="dropdown-item text-light"
+                                                        onclick="filtrarTablaPedido('0')">Canceladas</a></li>
+                                                <li><a class="dropdown-item text-light"
+                                                        onclick="filtrarTablaPedido('1')">Atendidas</a></li>
+                                                        <li><a class="dropdown-item text-light"
+                                                            onclick="filtrarTablaPedido('2')">Pendientes</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item ms-3">
+                                            <button class="btn btn-dark border border-warning boton_agregar" data-bs-toggle="modal"
+                                                data-bs-target="#agregarPedido">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#f0b44b" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0M8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5z"/>
+                                                  </svg>
+                                            </button>
+                                        </li>
+                                        <li class="nav-item ms-3">
+                                            <button class="btn  text-light boton_reporte  btn-dark border border-warning" id="generarReporte">
+                                                <img src="Img/Iconos/Reporte.svg" alt="Reporte Icono" class="me-2"> 
+                                              </button>
+                                    </ul>
+                                </div>
+                            </div>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Cantidad Producto</th>
+                            <th scope="col">Total del pedido</th>
+                            <th scope="col">Estatus</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider cuerpo_Tabla text-light" id="cuerpoTabla">
+ 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        </div>
+    </main>
+
+    <!------ Despliegue de formularios  ------>
+    <!-- Informacion adicional-->
+    <div class="modal fade" id="Info" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered">
+            <div class="modal-content bg-dark text-light border-warning">
+                <div class="modal-body">
+                    <div class="card text-light bg-dark border-warning">
+                        <div class="card-body text-light bg-dark ">
+                            <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-2"
+                                data-bs-dismiss="modal" aria-label="Cerrar">
+                            </button>
+                            <h5 class="card-title text-warning text-center">Información del pedido</h5>
+                            <div id="informacion" style="line-height: 1.5; font-size: 1rem;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      <!--Formulario para agregar un pedido -->
+      <div class="modal fade" id="agregarPedido">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content bg-dark text-light border-warning">
+                <div class="modal-header bg-dark text-light">
+                    <h4 class="modal-title">Registrar Pedido</h4>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body bg-dark text-light">
+                    <div class="container-fluid">
+                        <form id="formularioPedido" class="needs-validation" novalidate>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="mb-3">
+                                        <label for="Pro" class="text-light fw-bold">Producto :</label>
+                                        <input type="text" class="form-control bg-secondary text-light border-warning" id="producto" required>
+                                        <div class="invalid-feedback">Por favor ingrese el nombre del producto.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="vendida" class="text-light fw-bold">Cantidad vendida:</label>
+                                        <input type="number" class="form-control bg-secondary text-light border-warning" id="cantidadVendida" required>
+                                        <div class="invalid-feedback">Por favor ingrese una cantidad de venta.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="precioPedido" class="text-light fw-bold">Precio del pedido:</label>
+                                        <input type="number" class="form-control bg-secondary text-light border-warning" id="precioPedido" required>
+                                        <div class="invalid-feedback">Por favor ingrese el precio.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="IVA" class="text-light fw-bold">IVA:</label>
+                                        <input type="number" class="form-control bg-secondary text-light border-warning" id="IVA" required>
+                                        <div class="invalid-feedback">Por favor ingrese el IVA.</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mb-3">
+                                        <label for="inv" class="text-light fw-bold">Nombre del inventario:</label>
+                                        <input type="text" class="form-control bg-secondary text-light border-warning" id="inv" required>
+                                        <div class="invalid-feedback">Por favor ingrese el inventario.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cantidadPro" class="text-light fw-bold">Cantidad de producto:</label>
+                                        <input type="number" class="form-control bg-secondary text-light border-warning" id="cantidadPro" required>
+                                        <div class="invalid-feedback">Por favor ingrese la cantidad.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Stock" class="text-light fw-bold">Inventario del pedido:</label>
+                                        <input type="number" class="form-control bg-secondary text-light border-warning" id="Stock" required>
+                                        <div class="invalid-feedback">Por favor ingrese el inventario.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="fecha" class="text-light fw-bold">Fecha:</label>
+                                        <input type="datetime-local" class="form-control bg-secondary text-light border-warning" id="fecha" required>
+                                        <div class="invalid-feedback">Por favor ingrese la fecha.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <div class="offset-sm-3 col-sm-9">
+                                    <button type="submit" class="btn btn-success ms-4 ">Agregar</button>
+                                    <button type="button" class="btn btn-danger ms-4 " data-bs-dismiss="modal">Cancelar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      <!--Formulario para modificar un pedido -->
+    <div class="modal fade" id="Modificar">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content bg-dark text-light border-warning">
+                <div class="modal-header bg-dark text-light">
+                    <h4 class="modal-title">Modificar Pedido</h4>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body bg-dark text-light">
+                    <div class="container-fluid">
+                        <form id="formularioPedidoMod" class="needs-validation" novalidate>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="mb-3">
+                                        <label for="Pro" class="text-light fw-bold">Producto :</label>
+                                        <input type="text" class="form-control bg-secondary text-light border-warning" id="productoModificar" required>
+                                        <div class="invalid-feedback">Por favor ingrese el nombre del producto.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="vendida" class="text-light fw-bold">Cantidad vendida:</label>
+                                        <input type="number" class="form-control bg-secondary text-light border-warning" id="cantidadVendidaModificar" required>
+                                        <div class="invalid-feedback">Por favor ingrese una cantidad de venta.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="precioPedido" class="text-light fw-bold">Precio del pedido:</label>
+                                        <input type="number" class="form-control bg-secondary text-light border-warning" id="precioPedidoModificar" required>
+                                        <div class="invalid-feedback">Por favor ingrese el precio.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="IVA" class="text-light fw-bold">IVA:</label>
+                                        <input type="number" class="form-control bg-secondary text-light border-warning" id="IVAModificar" required>
+                                        <div class="invalid-feedback">Por favor ingrese el IVA.</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mb-3">
+                                        <label for="inv" class="text-light fw-bold">Nombre de inventario:</label>
+                                        <input type="text" class="form-control bg-secondary text-light border-warning" id="invModificar" required>
+                                        <div class="invalid-feedback">Por favor ingrese el inventario.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cantidadPro" class="text-light fw-bold">Cantidad de producto:</label>
+                                        <input type="number" class="form-control bg-secondary text-light border-warning" id="cantidadProModificar" required>
+                                        <div class="invalid-feedback">Por favor ingrese la cantidad.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Stock" class="text-light fw-bold">Inventario del pedido:</label>
+                                        <input type="number" class="form-control bg-secondary text-light border-warning" id="StockModificar" required>
+                                        <div class="invalid-feedback">Por favor ingrese el inventario del pedido.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="fecha" class="text-light fw-bold">Fecha:</label>
+                                        <input type="datetime-local" class="form-control bg-secondary text-light border-warning" id="fechaModificar" required>
+                                        <div class="invalid-feedback">Por favor ingrese la fecha.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <div class="offset-sm-3 col-sm-9">
+                                    <button type="button" class="btn btn-success ms-4 " onclick="guardarModificacion()">Modificar</button>
+                                    <button type="button" class="btn btn-danger ms-4 " data-bs-dismiss="modal">Cancelar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      <!--Preguntar si quiere cambiar el estatus de un pedido -->
+    <div class="modal fade" id="Cambio">
+        <div class="modal-dialog modal-md modal-dialog-centered">
+            <div class="modal-content bg-dark text-light border-light">
+                <div class="modal-body bg-dark text-light">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col text-center">
+                                <img class="icono_advertencia mb-3" src="Img/Iconos/inactive_order_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg" style="max-width: 100px;">
+                                <div class="card-body text-center">
+                                    <p class="card-text">¿Desea cambiar el estatus del pedido?</p>
+                                    <div class="d-flex justify-content-evenly">
+                                        <button type="submit" class="btn btn-success confirmarEliminar "   onclick="hacerCambio()">Cambiar</button>
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <!--Preguntar si quiere Eliminar un pedido -->
+     <div class="modal fade" id="Eliminar">
+        <div class="modal-dialog modal-md modal-dialog-centered">
+            <div class="modal-content bg-dark text-light border-light">
+                <div class="modal-body bg-dark text-light">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col text-center">
+                                <img class="icono_advertencia mb-3" src="Img/Iconos/warning_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg" style="max-width: 100px;">
+                                <div class="card-body text-center">
+                                    <p class="card-text">¿Seguro que quieres eliminar el pedido? </p>
+                                    <div class="d-flex justify-content-evenly">
+                                        <button type="submit" class="btn btn-danger " id="confirmarEliminar">Eliminar</button>
+                                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="JS/GestionPedidos.js"></script>
+</body>
+
+</html>

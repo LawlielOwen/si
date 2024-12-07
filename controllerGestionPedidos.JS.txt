@@ -1,0 +1,391 @@
+/* global Swal */
+
+let productos = [];  
+let indiceProductoSeleccionado;
+
+fetch("json/productos.json")
+    .then(response => {
+        return response.json();
+    })
+    .then(function (jsondata) {
+        productos = jsondata;
+        loadTable(1); 
+        document.getElementById("btnDelete").classList.add("disabled");
+    });
+
+function revisarEstatus() {
+    let checkbox = document.getElementById("checkStatus").checked;
+    if (checkbox) {
+        loadTable(0);
+    } else {
+        loadTable(1);
+    }
+}
+
+window.revisarEstatus = revisarEstatus;
+
+function loadTable(estatus) {
+    let cuerpo = "";
+
+    productos.forEach(function (producto) {
+        if (producto.estatus === estatus || estatus === undefined) {
+            cuerpo += '<tr>' +
+                    '<td>' + producto.codigo + '</td>' +
+                    '<td>' + producto.nombre_producto + '</td>' +
+                    '<td>' + producto.descripcion + '</td>' +
+                    '<td>' + producto.anio_lanzamiento + '</td>' +
+                    '<td>' + producto.marca + '</td>' +
+                    '<td>' + producto.presentacion + '</td>' +
+                    '<td>' + producto.genero + '</td>' +
+                    '<td>' + producto.departamento + '</td>' +
+                    '<td>' + "$" + producto.precio_inventario.toFixed(2) + '</td>' +
+                    '<td>' + producto.cantidad + '</td>' +
+                    '<td>' + "$"+ producto.precio_sugerido.toFixed(2) + '</td>' +
+                    '<td>' + "<img src='" + producto.imagen + "'width='30'/>"+'</td>' +
+                    '<td>' + (producto.estatus === 1 ? "Activo" : "Inactivo") + '</td>';
+
+            if (producto.estatus === 1) {
+                cuerpo += '<td>' +
+                        '<button class="btn btn-danger btn-sm" type="button" onclick="eliminarProducto(' + productos.indexOf(producto) + ')" style="font-size: 10px; margin-right: 10px; padding: 6px 9px;">Eliminar</button>' +
+'<button class="btn btn-dark btn-sm" type="button" onclick="modificarProducto(' + productos.indexOf(producto) + ')" style="font-size: 10px; padding: 6px 9px;">Modificar</button>' +
+
+                        '</td>';
+            } else {
+                cuerpo += '<td>' +
+                        '<button class="btn btn-danger btn-sm" type="button" disabled>Eliminar</button>' +
+                        '</td>';
+            }
+
+            cuerpo += '</tr>';
+        }
+    });
+
+    document.getElementById("tblProductos").innerHTML = cuerpo;
+}
+
+
+window.loadTable = loadTable;
+
+function selectProducto(indice) {
+    let producto = productos[indice];
+    document.getElementById("nombre").value = producto.nombre;
+    document.getElementById("descripcion").value = producto.descripcion;
+    document.getElementById("anioLanzamiento").value = producto.anio_lanzamiento;
+    document.getElementById("marca").value = producto.marca;
+    document.getElementById("presentacion").value = producto.presentacion;
+    document.getElementById("genero").value = producto.genero;
+    document.getElementById("departamento").value = producto.departamento;
+    document.getElementById("precioI").value = producto.precio_inventario;
+    document.getElementById("cantidad").value = producto.cantidad;
+    document.getElementById("precioS").value = producto.precio_sugerido;
+    document.getElementById("img").value = producto.imagen;
+    
+    indiceProductoSeleccionado = indice;
+
+    document.getElementById("btnDelete").classList.remove("disabled");
+}
+
+window.selectProducto = selectProducto;
+
+function eliminarProducto(indice) {
+    Swal.fire({
+        title: "¿Desea eliminar el producto?",
+        text: "Los datos estarán visibles en inactivos.",
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: 'black',
+        denyButtonText: "No aceptar",
+        denyButtonColor: '#6c757d',
+        background: '#f8f9fa'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            productos[indice].estatus = 0;  
+            loadTable(1); 
+            Swal.fire({
+                title: "Producto eliminado",
+                text: "El producto se ha eliminado correctamente.",
+                icon: "success",
+                confirmButtonText: "Aceptar",
+                confirmButtonColor: 'black'  
+            });
+        }
+    });
+}
+
+window.eliminarProducto = eliminarProducto;
+
+
+
+function guardarProducto() {
+    let producto = {};
+
+    producto.nombre_producto = document.getElementById("nombre").value;
+    producto.descripcion = document.getElementById("descripcion").value;
+    producto.anio_lanzamiento = parseInt(document.getElementById("anioLanzamiento").value);
+    producto.marca = document.getElementById("marca").value;
+    producto.presentacion = document.getElementById("presentacion").value;
+    producto.genero = document.getElementById("genero").value;
+    producto.departamento = document.getElementById("departamento").value;
+    producto.precio_inventario = parseFloat(document.getElementById("precioI").value);
+    producto.cantidad = parseInt(document.getElementById("cantidad").value);
+    producto.precio_sugerido = parseFloat(document.getElementById("precioS").value);
+    producto.imagen = document.getElementById("img").value;
+
+  
+    if (!producto.nombre_producto || !producto.descripcion || isNaN(producto.anio_lanzamiento) || !producto.marca || 
+        !producto.presentacion || !producto.genero || !producto.departamento || isNaN(producto.precio_inventario) || 
+        isNaN(producto.cantidad) || isNaN(producto.precio_sugerido)) {
+        Swal.fire({
+            title: '¡Oops!',
+            text: 'Por favor introduce todos los datos.',
+            icon: 'error',
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: 'black',
+            background: '#f8f9fa',
+            customClass: {
+                title: 'custom-title',
+                text: 'custom-text',
+                confirmButton: 'custom-button'
+            },
+            showConfirmButton: true
+        });
+        return;
+    }
+
+    if (indiceProductoSeleccionado === 'undefined') {
+        let folio = productos.length + 1;
+        producto.codigo = folio.toString().padStart(8, '0');
+        producto.estatus = 1;
+        productos.push(producto);
+
+        Swal.fire({
+            title: '¡Registro Exitoso!',
+            text: 'El producto se ha registrado correctamente.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: 'black',
+            background: '#f8f9fa',
+            customClass: {
+                title: 'custom-title',
+                text: 'custom-text',
+                confirmButton: 'custom-button'
+            },
+            showConfirmButton: true
+        });
+    } else {
+       
+        let productoExistente = productos[indiceProductoSeleccionado];
+
+    
+        productoExistente.nombre_producto = producto.nombre_producto;
+        productoExistente.descripcion = producto.descripcion;
+        productoExistente.anio_lanzamiento = producto.anio_lanzamiento;
+        productoExistente.marca = producto.marca;
+        productoExistente.presentacion = producto.presentacion;
+        productoExistente.genero = producto.genero;
+        productoExistente.departamento = producto.departamento;
+        productoExistente.precio_inventario = producto.precio_inventario;
+        productoExistente.cantidad = producto.cantidad;
+        productoExistente.precio_sugerido = producto.precio_sugerido;
+        productoExistente.imagen = producto.imagen;
+
+       
+        indiceProductoSeleccionado = undefined;
+
+        Swal.fire({
+            title: '¡Actualización Exitosa!',
+            text: 'El producto ha sido actualizado correctamente.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: 'black',
+            background: '#f8f9fa',
+            customClass: {
+                title: 'custom-title',
+                text: 'custom-text',
+                confirmButton: 'custom-button'
+            },
+            showConfirmButton: true
+        });
+    }
+
+  
+    document.getElementById("productoForm").reset();
+    $('#productoModal').modal('hide');  
+
+
+    loadTable(1);  
+}
+
+window.guardarProducto = guardarProducto;
+
+
+function actualizarProducto() {
+    let producto = productos[indiceProductoSeleccionado];
+
+    producto.nombre = document.getElementById("nombre").value;
+    producto.descripcion = document.getElementById("descripcion").value;
+    producto.anio_lanzamiento = parseInt(document.getElementById("anioLanzamiento").value);
+    producto.marca = document.getElementById("marca").value;
+    producto.presentacion = document.getElementById("presentacion").value;
+    producto.genero = document.getElementById("genero").value;
+    producto.departamento = document.getElementById("departamento").value;
+    producto.precio_inventario = parseFloat(document.getElementById("precioI").value);
+    producto.cantidad = parseInt(document.getElementById("cantidad").value);
+    producto.precio_sugerido = parseFloat(document.getElementById("precioS").value);
+    producto.imagen = document.getElementById("img").value;
+
+    loadTable(1);
+    clear();
+    Swal.fire({
+        title: "Registro modificado",
+        icon: "success"
+    });
+    
+}
+
+window.actualizarProducto = actualizarProducto;
+
+
+function clear() {
+    document.getElementById("nombre").value="";
+    document.getElementById("descripcion").value="";
+    document.getElementById("anioLanzamiento").value="";
+    document.getElementById("marca").value="";
+    document.getElementById("presentacion").value="";
+    document.getElementById("genero").value="";
+    document.getElementById("departamento").value="";
+    document.getElementById("precioI").value="";
+    document.getElementById("cantidad").value="";
+    document.getElementById("precioS").value="";
+    document.getElementById("img").value="";
+}
+
+function buscarProducto() {
+    let cuerpo = "";
+    let datobuscado = document.getElementById("txtdatobuscado").value.toLowerCase();  
+if (datobuscado === "") {
+        loadTable(1);
+        return;
+    }
+    productos.forEach(function (producto) {
+        let nombre = producto.nombre_producto.toLowerCase(); 
+        let codigo = producto.codigo.toString();
+
+        if (codigo.includes(datobuscado) || nombre.includes(datobuscado)) {
+           
+            let botonCancelar = producto.estatus === 1 
+                ? `<button class="btn btn-danger btn-sm" type="button" onclick="EliminarProducto(${productos.indexOf(producto)})">Eliminar</button>`
+                : `<button class="btn btn-danger btn-sm" type="button" disabled>Cancelar</button>`;
+
+            let registro =
+                `<tr onclick="selectVenta(${producto.codigo});">
+                    <td>${producto.codigo}</td>
+                    <td>${producto.nombre_producto}</td>
+                    <td>${producto.descripcion}</td>
+                    <td>${producto.anio_lanzamiento}</td>
+                    <td>${producto.marca}</td>
+                    <td>${producto.presentacion}</td>
+                    <td>${producto.genero}</td>
+                    <td>${producto.departamento}</td>
+                    <td>${producto.precio_inventario.toFixed(2)}</td>
+                    <td>${producto.cantidad}</td>
+                    <td>${producto.precio_sugerido.toFixed(2)}</td>
+                    <td>${producto.imagen}</td>
+                    <td>${producto.estatus === 1 ? "Activo" : "Inactivo"}</td>
+                    <td>${botonCancelar}</td>
+                </tr>`;
+            cuerpo += registro;
+        }
+    });
+
+    document.getElementById("tblProductos").innerHTML = cuerpo;
+}
+window.buscarProducto = buscarProducto;
+
+
+function modificarProducto(index) {
+    if (index === undefined || index < 0 || index >= productos.length) {
+        alert("Producto no encontrado.");
+        return;
+    }
+
+    
+    let producto = productos[index];
+
+   
+    document.getElementById("nombre").value = producto.nombre_producto;
+    document.getElementById("descripcion").value = producto.descripcion;
+    document.getElementById("anioLanzamiento").value = producto.anio_lanzamiento;
+    document.getElementById("marca").value = producto.marca;
+    document.getElementById("presentacion").value = producto.presentacion;
+    document.getElementById("genero").value = producto.genero;
+    document.getElementById("departamento").value = producto.departamento;
+    document.getElementById("precioI").value = producto.precio_inventario;
+    document.getElementById("cantidad").value = producto.cantidad;
+    document.getElementById("precioS").value = producto.precio_sugerido;
+
+   
+    indiceProductoSeleccionado = index;
+
+   
+    $('#productoModal').modal('show');
+}
+
+
+function guardarCambiosProducto() {
+   
+    if (indiceProductoSeleccionado === undefined) {
+        alert("Producto no encontrado.");
+        return;
+    }
+
+    
+    let producto = productos[indiceProductoSeleccionado];
+
+    
+    producto.nombre_producto = document.getElementById("nombre").value;
+    producto.descripcion = document.getElementById("descripcion").value;
+    producto.anio_lanzamiento = parseInt(document.getElementById("anioLanzamiento").value);
+    producto.marca = document.getElementById("marca").value;
+    producto.presentacion = document.getElementById("presentacion").value;
+    producto.genero = document.getElementById("genero").value;
+    producto.departamento = document.getElementById("departamento").value;
+    producto.precio_inventario = parseFloat(document.getElementById("precioI").value);
+    producto.cantidad = parseInt(document.getElementById("cantidad").value);
+    producto.precio_sugerido = parseFloat(document.getElementById("precioS").value);
+
+   
+    if (!producto.nombre_producto || !producto.descripcion || isNaN(producto.anio_lanzamiento) || !producto.marca ||
+        !producto.presentacion || !producto.genero || !producto.departamento || isNaN(producto.precio_inventario) ||
+        isNaN(producto.cantidad) || isNaN(producto.precio_sugerido)) {
+        alert("Por favor, complete todos los campos.");
+        return;
+    }
+
+    
+    let fileInput = document.getElementById("img");
+    let imgFile = fileInput.files[0]; 
+    if (imgFile) {
+        producto.imagen = URL.createObjectURL(imgFile);
+    }
+
+    
+    productos[indiceProductoSeleccionado] = producto;
+
+    
+    document.getElementById("productoForm").reset();
+    $('#productoModal').modal('hide');
+
+    
+    loadTable();
+
+   
+    Swal.fire({
+        title: "Producto modificado",
+        text: "Los datos del producto han sido actualizados correctamente.",
+        icon: "success",
+        confirmButtonText: "Aceptar"
+    });
+}
+window.modificarProducto = modificarProducto;

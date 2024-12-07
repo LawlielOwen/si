@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>L'elégant Chat Noir</title>
+    <link rel="shortcut icon" href="Img/GatoN.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device-width , initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="CSS/GestionProducto.css">
+    <link rel="stylesheet" href="CSS/TablaGestion.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    <script src="JS/FiltrarTabla.js"></script>
+   
+</head>
+
+<body> 
+    <!-- Seccion header-->
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xxl-4 d-flex align-items-center justify-content-between">
+                    <img src="Img/Iconos/GatoSinDerechos.svg" class="logo custom-left" alt="Logo Gato Sin Derechos">
+                    <div class="input-group mb-2 flex-nowrap col-12 col-md-6">
+                        <span class="input-group-text" id="addon-wrapping">
+                            <i class="fas fa-search"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="#f0b44b" class="bi bi-search" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                            </svg></i>
+                        </span>
+                        <input type="search" class="form-control buscar_pro" placeholder="Busqueda" aria-label="Username" aria-describedby="addon-wrapping" onkeyup=" buscarPro()">
+                    </div>
+                    <div class="usuario_menu">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle username" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="Img/rogonsote.jpg" class="icono_usuario" alt="Icono de usuario"> Osvaldo
+                                </a>
+                                <ul class="menu_opciones dropdown-menu">
+                                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#configuracion">Configuración</a></li>
+                                    <li><a class="dropdown-item" href="index.html">Cerrar sesión</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+   
+
+    <div class="container"> 
+        <div class="modal fade" id="configuracion">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+              <div class="modal-content bg-dark text-light border-light">
+          
+                <div class="modal-header bg-dark text-light ">
+                  <h5 class="modal-title">Configuración de usuario</h5>
+                  <button type="button" class="btn-close  btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body  bg-dark">
+                    <div class="container-fluid">   
+                        <!-- Formulario con validacion de bootstrap -->
+                        <form class="needs-validation" novalidate>
+                            <div class="mb-3 row">
+                              <label for="validationCustomUsername" class="col-sm-3 col-form-label text-light fw-bold">Nombre de usuario:</label>
+                              <div class="col-sm-9">
+                                <input type="text" class="form-control bg-secondary text-light" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                                <div class="invalid-feedback">
+                                  Por favor, elija un nombre de usuario.
+                                </div>
+                              </div>
+                            </div>
+                          
+                            <div class="mb-3 row">
+                              <label for="validationCustomPassword" class="col-sm-3 col-form-label text-light fw-bold">Ingrese contraseña:</label>
+                              <div class="col-sm-9">
+                                <input type="password" class="form-control bg-secondary text-light" id="validationCustomPassword" aria-describedby="inputGroupPrepend" required>
+                                <div class="invalid-feedback">
+                                  Por favor, ingrese una contraseña.
+                                </div>
+                              </div>
+                            </div>
+                          
+                            <div class="mb-3 row">
+                              <div class="offset-sm-3 col-sm-9">
+                                <button type="submit" class="btn btn-success ms-4">Confirmar</button> 
+                                <button type="button" class="btn btn-danger ms-4" data-bs-dismiss="modal">Cancelar</button>
+                              </div>
+                            </div>
+                          </form>
+                    </div>            
+                </div>
+              </div>
+            </div>
+          </div> 
+    </div>
+
+    
+    <!-- Seccion main-->
+    <main class="pt-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xxl-4">
+                    <button class="btn btn-dark d-xl-none button_menu" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#barraModulos" aria-expanded="false" aria-controls="barraModulos">
+                        ☰ Menu
+                    </button>
+
+                    <div class="barra_modulos collapse d-xl-block " id="barraModulos">
+                        <nav class="nav flex-column ">
+                            <a class="href_secciones empleados nav-link" href="GestionEmpleados.html"><img
+                                src="Img/Iconos/badge_22dp_FFD136_FILL0_wght400_GRAD0_opsz24.svg"
+                                class="iconos">Empleados</a>
+                        <a class="href_secciones ventas nav-link" href="GestionVentas.html"><img
+                                src="Img/Iconos/sell_22dp_FFD136_FILL0_wght400_GRAD0_opsz24.svg"
+                                class="iconos">Ventas</a>
+                        <a class="href_secciones pedidos nav-link" href="GestionPedidos.html"><img
+                                src="Img/Iconos/orders_22dp_FFD136_FILL0_wght400_GRAD0_opsz24.svg"
+                                class="iconos">Pedidos</a>
+                        <a class="href_secciones productos nav-link" href="GestionProducto.html"><img
+                                src="Img/Iconos/inventory_22dp_FFD136_FILL0_wght400_GRAD0_opsz24.svg"
+                                class="iconos">Productos</a>
+                        </nav>
+                        <button class="boton_cerrar btn btn-danger d-xl-none" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#barraModulos" aria-expanded="true" aria-controls="barraModulos">
+                            ✖ Cerrar
+                        </button>
+                    </div>
+                </div>
+                <div class="col main-content">
+
+                </div>
+            </div>
+        </div>
+        <!-- Tabla de productos -->
+        <div class="container mt-5">
+            <div class="table-responsive mt-5">
+                <table class="table text-light mt-5 caption-top" id="tabla">
+                    <caption class="text-light">
+                        <nav class="navbar navbar-expand">
+                            <div class="container-fluid">
+                                <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                                    <ul class="navbar-nav ">
+                                        <li class="nav-item dropdown">
+                                            <button
+                                                class="btn btn-dark dropdown-toggle border border-warning boton_opciones"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                Productos
+                                            </button>
+                                            <ul class="dropdown-menu menu_filtro">
+                                                <li><a class="dropdown-item text-light"
+                                                        onclick="filtrarTabla('todos')">Todos</a></li>
+                                                <li><a class="dropdown-item text-light"
+                                                        onclick="filtrarTabla('0')">Inactivos</a></li>
+                                                <li><a class="dropdown-item text-light"
+                                                        onclick="filtrarTabla('1')">Activos</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item ms-3">
+                                            <button class="btn btn-dark border border-warning boton_agregar" data-bs-toggle="modal"
+                                                data-bs-target="#agregarProducto">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#f0b44b">
+                                                    <path d="M200-80q-33 0-56.5-23.5T120-160v-451q-18-11-29-28.5T80-680v-120q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v120q0 23-11 40.5T840-611v451q0 33-23.5 56.5T760-80H200Zm0-520v440h560v-440H200Zm-40-80h640v-120H160v120Zm200 280h240v-80H360v80Zm120 20Z"/></svg>
+                                            </button>
+                                        </li>
+                                        <li class="nav-item ms-3">
+                                            <button class="btn  text-light boton_reporte  btn-dark border border-warning" 
+                                           id="generarReporte">
+                                                <img src="Img/Iconos/Reporte.svg" alt="Reporte Icono" class="me-2"> 
+                                              </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Fotografia </th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Marca</th>
+                            <th scope="col">Estatus</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider  cuerpo_Tabla text-light" id="cuerpoTabla">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        </div>
+    </main>
+    <article>
+
+  <!------ Despliegue de formularios  ------>
+
+    <!-- Informacion adicional-->
+    <div class="modal fade" id="Info" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered">
+            <div class="modal-content bg-dark text-light border-warning">
+                <div class="modal-body">
+                    <div class="card text-light bg-dark border-warning">
+                        <div class="card-body text-light bg-dark ">
+                            <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-2"
+                                data-bs-dismiss="modal" aria-label="Cerrar">
+                            </button>
+                            <h5 class="card-title text-warning text-center">Información del producto</h5>
+                            <div id="informacion" style="line-height: 1.5; font-size: 1rem;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <!--Formulario para agregar un producto -->
+     <div class="modal fade" id="agregarProducto">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content bg-dark text-light border-warning">
+                <div class="modal-header bg-dark text-light">
+                    <h4 class="modal-title">Registrar Producto</h4>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body bg-dark text-light">
+                    <div class="container-fluid">
+                        <form id="formularioProducto" class="needs-validation" novalidate>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="mb-3">
+                                        <label for="nombre" class="text-light fw-bold">Nombre del producto:</label>
+                                        <input type="text" class="form-control bg-secondary text-light border-warning" id="nombre" required>
+                                        <div class="invalid-feedback">Por favor ingrese el nombre del producto.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Descripcion" class="text-light fw-bold">Descripción:</label>
+                                        <input type="text" class="form-control bg-secondary text-light border-warning" id="Descripcion" required>
+                                        <div class="invalid-feedback">Por favor ingrese una descripción.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Año de lanzamiento" class="text-light fw-bold">Año de lanzamiento:</label>
+                                        <input type="number" class="form-control bg-secondary text-light border-warning" id="Año de lanzamiento" required>
+                                        <div class="invalid-feedback">Por favor ingrese el año de lanzamiento.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Marca" class="text-light fw-bold">Marca:</label>
+                                        <input type="text" class="form-control bg-secondary text-light border-warning" id="Marca" required>
+                                        <div class="invalid-feedback">Por favor ingrese la marca.</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="mb-3">
+                                        <label for="Presentación" class="text-light fw-bold">Presentación:</label>
+                                        <input type="text" class="form-control bg-secondary text-light border-warning" id="Presentación" required>
+                                        <div class="invalid-feedback">Por favor ingrese la presentación.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Género" class="text-light fw-bold">Género:</label>
+                                        <input type="text" class="form-control bg-secondary text-light border-warning" id="Género" required>
+                                        <div class="invalid-feedback">Por favor ingrese el género.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Departamento" class="text-light fw-bold">Departamento:</label>
+                                        <input type="text" class="form-control bg-secondary text-light border-warning" id="Departamento" required>
+                                        <div class="invalid-feedback">Por favor ingrese el departamento.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Precioinventario" class="text-light fw-bold">Precio inventario:</label>
+                                        <input type="number" class="form-control bg-secondary text-light border-warning" id="Precioinventario" required>
+                                        <div class="invalid-feedback">Por favor ingrese el precio de inventario.</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="mb-3">
+                                        <label for="Cantidad" class="text-light fw-bold">Cantidad:</label>
+                                        <input type="number" class="form-control bg-secondary text-light border-warning" id="Cantidad" required>
+                                        <div class="invalid-feedback">Por favor ingrese la cantidad.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Preciosugerido" class="text-light fw-bold">Precio sugerido:</label>
+                                        <input type="number" class="form-control bg-secondary text-light border-warning" id="Preciosugerido" required>
+                                        <div class="invalid-feedback">Por favor ingrese el precio sugerido.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="fotografia" class="text-light fw-bold">Fotografía:</label>
+                                        <input type="file" class="form-control bg-secondary text-light border-warning" id="fotografia" accept=".jpg, .jpeg, .png" required>
+                                        <div class="invalid-feedback">Por favor suba una fotografía.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Códigobarras" class="text-light fw-bold">Código de barras:</label>
+                                        <input type="text" class="form-control bg-secondary text-light border-warning" id="Códigobarras" required>
+                                        <div class="invalid-feedback">Por favor ingrese el código de barras.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <div class="offset-sm-3 col-sm-9">
+                                    <button type="submit" class="btn btn-success ms-4 ">Agregar</button>
+                                    <button type="button" class="btn btn-danger ms-4 " data-bs-dismiss="modal">Cancelar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    </article>
+        <!--Preguntar si quiere Eliminar un producto-->
+        <div class="modal fade" id="Eliminar">
+            <div class="modal-dialog modal-md modal-dialog-centered">
+                <div class="modal-content bg-dark text-light border-light">
+                    <div class="modal-body bg-dark text-light">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col text-center">
+                                    <img class="icono_advertencia mb-3" src="Img/Iconos/warning_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg" style="max-width: 100px;">
+                                    <div class="card-body text-center">
+                                        <p class="card-text">¿Seguro que quieres eliminar el producto? </p>
+                                        <div class="d-flex justify-content-evenly">
+                                            <button type="submit" class="btn btn-danger " id="confirmarEliminar">Eliminar</button>
+                                            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Formulario para modificar un producto -->
+        <div class="modal fade" id="Modificar">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content bg-dark text-light border-warning">
+                    <div class="modal-header bg-dark text-light">
+                        <h4 class="modal-title">Modificar Producto</h4>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body bg-dark text-light">
+                        <div class="container-fluid">
+                            <form id="formularioMod" class="needs-validation" novalidate>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="mb-3">
+                                            <label for="nombre" class="text-light fw-bold">Nombre del producto:</label>
+                                            <input type="text" class="form-control bg-secondary text-light border-warning" id="nombreModificar" required>
+                                            <div class="invalid-feedback">Por favor ingrese el nombre del producto.</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="Descripcion" class="text-light fw-bold">Descripción:</label>
+                                            <input type="text" class="form-control bg-secondary text-light border-warning" id="DescripcionModificar" required>
+                                            <div class="invalid-feedback">Por favor ingrese una descripción.</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="Año de lanzamiento" class="text-light fw-bold">Año de lanzamiento:</label>
+                                            <input type="number" class="form-control bg-secondary text-light border-warning" id="AñodelanzamientoModificar" required>
+                                            <div class="invalid-feedback">Por favor ingrese el año de lanzamiento.</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="Marca" class="text-light fw-bold">Marca:</label>
+                                            <input type="text" class="form-control bg-secondary text-light border-warning" id="MarcaModificar" required>
+                                            <div class="invalid-feedback">Por favor ingrese la marca.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="mb-3">
+                                            <label for="Presentación" class="text-light fw-bold">Presentación:</label>
+                                            <input type="text" class="form-control bg-secondary text-light border-warning" id="PresentaciónModificar" required>
+                                            <div class="invalid-feedback">Por favor ingrese la presentación.</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="Género" class="text-light fw-bold">Género:</label>
+                                            <input type="text" class="form-control bg-secondary text-light border-warning" id="GéneroModificar" required>
+                                            <div class="invalid-feedback">Por favor ingrese el género.</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="Departamento" class="text-light fw-bold">Departamento:</label>
+                                            <input type="text" class="form-control bg-secondary text-light border-warning" id="DepartamentoModificar" required>
+                                            <div class="invalid-feedback">Por favor ingrese el departamento.</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="Precioinventario" class="text-light fw-bold">Precio inventario:</label>
+                                            <input type="number" class="form-control bg-secondary text-light border-warning" id="PrecioinventarioModificar" required>
+                                            <div class="invalid-feedback">Por favor ingrese el precio de inventario.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="mb-3">
+                                            <label for="Cantidad" class="text-light fw-bold">Cantidad:</label>
+                                            <input type="number" class="form-control bg-secondary text-light border-warning" id="CantidadModificar" required>
+                                            <div class="invalid-feedback">Por favor ingrese la cantidad.</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="Preciosugerido" class="text-light fw-bold">Precio sugerido:</label>
+                                            <input type="number" class="form-control bg-secondary text-light border-warning" id="PreciosugeridoModificar" required>
+                                            <div class="invalid-feedback">Por favor ingrese el precio sugerido.</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="fotografia" class="text-light fw-bold">Fotografía:</label>
+                                            <input type="file" class="form-control bg-secondary text-light border-warning" id="fotografiaModificar"  accept=".jpg, .jpeg, .png" required>
+                                            <div class="invalid-feedback">Por favor suba una fotografía.</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="Códigobarras" class="text-light fw-bold">Código de barras:</label>
+                                            <input type="text" class="form-control bg-secondary text-light border-warning" id="CódigobarrasModificar" required>
+                                            <div class="invalid-feedback">Por favor ingrese el código de barras.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <div class="offset-sm-3 col-sm-9">
+                                        <button type="button" class="btn btn-success ms-4 " onclick="guardarModificacion()">Modificar</button>
+                                        <button type="button" class="btn btn-danger ms-4 " data-bs-dismiss="modal">Cancelar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Preguntar si quiere cambiar el estatus de un producto -->
+        <div class="modal fade" id="Cambio">
+            <div class="modal-dialog modal-md modal-dialog-centered">
+                <div class="modal-content bg-dark text-light border-light">
+                    <div class="modal-body bg-dark text-light">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col text-center">
+                                    <img class="icono_advertencia mb-3" src="Img/Iconos/inventory_2_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg" style="max-width: 100px;">
+                                    <div class="card-body text-center">
+                                        <p class="card-text">¿Desea cambiar el estatus? </p>
+                                        <div class="d-flex justify-content-evenly">
+                                            <button type="submit" class="btn btn-success confirmarEliminar" onclick="hacerCambio()">Cambiar</button>
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="JS/GestionProducto.js"></script>
+    
+</body>
+
+</html>
